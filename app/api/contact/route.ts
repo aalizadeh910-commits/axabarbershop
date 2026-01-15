@@ -40,6 +40,8 @@ const contactEmailTemplates = {
               
               <p>Our team will review your message and respond to you shortly at ${data.email}.</p>
               
+              <p><strong style="color: #d4a574;">💡 Tip: Please check your junk/spam folder if you don't hear from us within 24 hours.</strong></p>
+              
               <p>If you have an urgent matter, please call us at:</p>
               <p><strong>+358 41 3134978</strong></p>
               
@@ -116,6 +118,8 @@ const contactEmailTemplates = {
               </p>
               
               <p>Tiimimme tarkistaa viestisi ja vastaa sinulle pian osoitteeseen ${data.email}.</p>
+              
+              <p><strong style="color: #d4a574;">💡 Vinkki: Tarkista roskapostikansio, jos et kuule meistä 24 tunnin sisällä.</strong></p>
               
               <p>Jos asiasi on kiireellinen, soita meille:</p>
               <p><strong>+358 41 3134978</strong></p>

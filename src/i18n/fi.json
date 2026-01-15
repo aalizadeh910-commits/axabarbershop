@@ -274,14 +274,5 @@
     "contactPhone": "Puhelin",
     "gdprTitle": "GDPR ja Suomen Tietosuoja",
     "gdprContent": "Yrityksenä, joka toimii Suomessa, AXA Barbershop noudattaa yleistä tietosuoja-asetusta (GDPR) ja Suomen henkilötiedon käsittelystä annettua lakia. Tietosuojaoikeuksia koskevista tiedusteluista voit myös ottaa yhteyttä Suomen tietosuojavaltuutetun toimistoon (Tietosuojavaltuutetun toimisto)."
-  },
-  "kidsWelcome": {
-    "title": "Lapset Aina Tervetulleita! 🍭",
-    "message": "Erityiset lasten leikkaukset rentoissa ja mukavissa olosuhteissa!",
-    "service": "Pojan Leikkaus",
-    "price": "25€",
-    "duration": "30 minuuttia",
-    "description": "Partureillamme on kiva työskennellä lasten kanssa! Ystävällinen palvelu, ammattitaitoinen leikkaus ja erityinen lollipop-palkinto lopussa! 🍭",
-    "bookNow": "Varaa Pojan Leikkaus"
   }
 }

@@ -274,14 +274,5 @@
     "contactPhone": "Phone",
     "gdprTitle": "GDPR and Finnish Data Protection",
     "gdprContent": "As a business operating in Finland, AXA Barbershop complies with the General Data Protection Regulation (GDPR) and the Finnish Personal Data Protection Act (Laki henkilötiedon käsittelemisestä). For inquiries about your data protection rights, you can also contact the Finnish Data Protection Ombudsman (Tietosuojavaltuutetun toimisto)."
-  },
-  "kidsWelcome": {
-    "title": "Kids Always Welcome! 🍭",
-    "message": "Special kids haircuts with a fun and relaxed atmosphere!",
-    "service": "Kids Haircut",
-    "price": "25€",
-    "duration": "30 minutes",
-    "description": "Our barbers love working with kids! Friendly service, professional haircuts, and a special lollipop reward at the end! 🍭",
-    "bookNow": "Book Kids Haircut"
   }
 }

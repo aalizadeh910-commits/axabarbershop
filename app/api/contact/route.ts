@@ -222,25 +222,22 @@ export async function POST(request: NextRequest) {
           </style>
         </head>
         <body>
-          <div class="info-box">
-            <p><strong>TESTING MODE:</strong> This email would be sent to ${data.email}</p>
-          </div>
           ${template.getCustomerHtml(data)}
         </body>
       </html>
     `;
     
     const customerEmail = await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: 'migatron2012@gmail.com',
-      subject: `[TO: ${data.email}] ${template.subject}`,
+      from: 'noreply@axabarbershop.fi',
+      to: data.email,
+      subject: template.subject,
       html: customerEmailContent,
     });
 
     // Send notification email to business
     const businessEmail = await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: 'migatron2012@gmail.com',
+      from: 'noreply@axabarbershop.fi',
+      to: 'aalizadeh910@gmail.com',
       subject: `New Contact Form - ${data.name}`,
       html: template.getBusinessHtml(data),
     });

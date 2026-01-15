@@ -64,6 +64,20 @@
     "sunday": "Sunnuntai",
     "closedLabel": "Suljettu"
   },
+  "kidsWelcome": {
+    "title": "Lapset Aina Tervetulleita! 🍭",
+    "message": "Erityiset lasten leikkaukset rennoissa ja mukavissa olosuhteissa!",
+    "service": "Pojan Leikkaus",
+    "price": "25€",
+    "duration": "30 minuuttia",
+    "description": "Partureillamme on kiva työskennellä lasten kanssa! Ystävällinen palvelu, ammattitaitoinen leikkaus ja erityinen lollipop-palkinto lopussa! 🍭",
+    "specialFeatures": "Erityiset ominaisuudet",
+    "feature1": "Ystävälliset ja kärsivälliset parturit",
+    "feature2": "Lapsiystävällinen ilmapiiri",
+    "feature3": "Ilmainen lollipop-palkinto! 🍭",
+    "feature4": "Hauskat leikkaus-kokemukset",
+    "bookNow": "Varaa Nyt"
+  },
   "services": {
     "title": "Palvelumme",
     "subtitle": "Tarjoamme laajan valikoiman parturipalveluita laadukkailla tuotteilla.",

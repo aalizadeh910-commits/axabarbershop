@@ -64,6 +64,20 @@
     "sunday": "Sunday",
     "closedLabel": "Closed"
   },
+  "kidsWelcome": {
+    "title": "Kids Always Welcome! 🍭",
+    "message": "Special kids haircuts in relaxed and comfortable conditions!",
+    "service": "Boys Haircut",
+    "price": "25€",
+    "duration": "30 minutes",
+    "description": "Our barbers love working with kids! Friendly service, professional haircut and a special lollipop reward at the end! 🍭",
+    "specialFeatures": "Special Features",
+    "feature1": "Friendly & patient barbers",
+    "feature2": "Kids-friendly atmosphere",
+    "feature3": "Free lollipop reward! 🍭",
+    "feature4": "Fun haircut experience",
+    "bookNow": "Book Now"
+  },
   "services": {
     "title": "Our Services",
     "subtitle": "We offer a wide range of barbering services with quality products.",

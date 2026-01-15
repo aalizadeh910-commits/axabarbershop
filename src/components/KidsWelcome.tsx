@@ -98,12 +98,12 @@ export function KidsWelcome() {
 
             {/* Special Features */}
             <div className="bg-blue-50 rounded-lg p-4 mb-6 border-2 border-blue-200">
-              <p className="text-sm font-bold text-blue-900 mb-2">✨ Special Features:</p>
+              <p className="text-sm font-bold text-blue-900 mb-2">✨ {t('kidsWelcome.specialFeatures')}:</p>
               <ul className="text-sm text-blue-800 space-y-1">
-                <li>✓ Friendly & patient barbers</li>
-                <li>✓ Kids-friendly atmosphere</li>
-                <li>✓ Free lollipop reward! 🍭</li>
-                <li>✓ Fun haircut experience</li>
+                <li>✓ {t('kidsWelcome.feature1')}</li>
+                <li>✓ {t('kidsWelcome.feature2')}</li>
+                <li>✓ {t('kidsWelcome.feature3')}</li>
+                <li>✓ {t('kidsWelcome.feature4')}</li>
               </ul>
             </div>
 

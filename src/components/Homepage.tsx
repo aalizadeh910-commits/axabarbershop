@@ -13,22 +13,40 @@ export function Homepage({ onNavigate }: HomepageProps) {
   const { t } = useI18n();
   const services = [
     {
-      nameKey: "homepage.haircut",
-      price: t('homepage.haircut_price'),
-      duration: t('homepage.haircut_duration'),
-      descKey: "homepage.haircut_desc",
+      nameKey: "services.normalHaircut",
+      price: "20€",
+      duration: "45 min",
+      descKey: "services.normalHaircut_desc",
     },
     {
-      nameKey: "homepage.shave",
-      price: t('homepage.shave_price'),
-      duration: t('homepage.shave_duration'),
-      descKey: "homepage.shave_desc",
+      nameKey: "services.fade",
+      price: "25€",
+      duration: "45 min",
+      descKey: "services.fade_desc",
     },
     {
-      nameKey: "homepage.combo",
-      price: t('homepage.combo_price'),
-      duration: t('homepage.combo_duration'),
-      descKey: "homepage.combo_desc",
+      nameKey: "services.pensioners",
+      price: "15€",
+      duration: "30 min",
+      descKey: "services.pensioners_desc",
+    },
+    {
+      nameKey: "services.beardRazor",
+      price: "15€",
+      duration: "30 min",
+      descKey: "services.beardRazor_desc",
+    },
+    {
+      nameKey: "services.beardShaping",
+      price: "15€",
+      duration: "20 min",
+      descKey: "services.beardShaping_desc",
+    },
+    {
+      nameKey: "services.beardMachine",
+      price: "10€",
+      duration: "15 min",
+      descKey: "services.beardMachine_desc",
     },
   ];
 

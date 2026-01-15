@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { I18nProvider } from "../src/components/I18nProvider";
+import { AuthProvider } from "../src/context/AuthContext";
 import { CookieConsent } from "../src/components/CookieConsent";
 import { KidsWelcome } from "../src/components/KidsWelcome";
 import Footer from "../src/components/Footer";
@@ -116,12 +117,14 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <I18nProvider>
-          <main>{children}</main>
-          <KidsWelcome />
-          <CookieConsent />
-          <Footer />
-        </I18nProvider>
+        <AuthProvider>
+          <I18nProvider>
+            <main>{children}</main>
+            <KidsWelcome />
+            <CookieConsent />
+            <Footer />
+          </I18nProvider>
+        </AuthProvider>
       </body>
     </html>
   );

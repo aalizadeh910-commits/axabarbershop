@@ -1,20 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+);
+
+// Verify admin token
+async function verifyAdmin(request: NextRequest) {
+  const authHeader = request.headers.get('authorization');
+  if (!authHeader?.startsWith('Bearer ')) {
+    return { valid: false, user: null, error: 'Unauthorized' };
+  }
+
+  const token = authHeader.slice(7);
+
+  try {
+    const {
+      data: { user },
+      error,
+    } = await supabaseAdmin.auth.getUser(token);
+
+    if (error || !user) {
+      return { valid: false, user: null, error: 'Invalid token' };
+    }
+
+    return { valid: true, user };
+  } catch {
+    return { valid: false, user: null, error: 'Token verification failed' };
+  }
+}
 
 // GET all bookings
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { valid, error } = await verifyAdmin(request);
 
-    const token = authHeader.slice(7).trim();
-    const correctPassword = (process.env.ADMIN_PASSWORD || 'admin123').trim();
-    
-    if (token !== correctPassword) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    if (!valid) {
+      return NextResponse.json({ error }, { status: 401 });
     }
 
     const bookings = await prisma.booking.findMany({
@@ -34,16 +58,10 @@ export async function GET(request: NextRequest) {
 // UPDATE booking status
 export async function PUT(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { valid, error } = await verifyAdmin(request);
 
-    const token = authHeader.slice(7).trim();
-    const correctPassword = (process.env.ADMIN_PASSWORD || 'admin123').trim();
-    
-    if (token !== correctPassword) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    if (!valid) {
+      return NextResponse.json({ error }, { status: 401 });
     }
 
     const data = await request.json();
@@ -74,16 +92,10 @@ export async function PUT(request: NextRequest) {
 // DELETE booking
 export async function DELETE(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { valid, error } = await verifyAdmin(request);
 
-    const token = authHeader.slice(7).trim();
-    const correctPassword = (process.env.ADMIN_PASSWORD || 'admin123').trim();
-    
-    if (token !== correctPassword) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    if (!valid) {
+      return NextResponse.json({ error }, { status: 401 });
     }
 
     const { searchParams } = new URL(request.url);

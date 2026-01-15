@@ -1,0 +1,10 @@
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Specify sitemap location
+Sitemap: https://axabarbershop.fi/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin
+Disallow: /api/

@@ -187,7 +187,7 @@ export async function POST(request: NextRequest) {
     `;
     
     const customerEmail = await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'noreply@axabarbershop.fi',
       to: data.email,
       subject: template.subject,
       html: customerEmailContent,
@@ -201,8 +201,8 @@ export async function POST(request: NextRequest) {
 
     // Send notification email to business
     const businessEmail = await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: 'migatron2012@gmail.com',
+      from: 'noreply@axabarbershop.fi',
+      to: 'aalizadeh910@gmail.com',
       subject: `New Booking - ${data.name}`,
       html: `
         <html>

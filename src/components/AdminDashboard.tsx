@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Trash2, LogOut, RefreshCw, Bell } from 'lucide-react';
-import { Toaster, toast } from 'sonner';
+import { toast } from 'sonner';
 import {
   LineChart,
   Line,
@@ -42,17 +44,41 @@ interface AdminDashboardProps {
   onLogout?: () => void;
 }
 
-export function AdminDashboard({ initialToken, onLogout }: AdminDashboardProps = {}) {
+export function AdminDashboard() {
+  const { user, session, signOut, loading: authLoading } = useAuth();
+  const router = useRouter();
   const [bookings, setBookings] = useState<Booking[]>([]);
-  const [password, setPassword] = useState('');
-  const [adminToken, setAdminToken] = useState<string | null>(initialToken || null);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!initialToken);
+  const [adminToken, setAdminToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState('all');
   const [refreshing, setRefreshing] = useState(false);
   const [previousBookingCount, setPreviousBookingCount] = useState(0);
   const audioRef = useRef<any>(null);
+
+  // Get the session token and fetch initial bookings
+  useEffect(() => {
+    const getToken = async () => {
+      if (session?.access_token) {
+        setAdminToken(session.access_token);
+      }
+    };
+    getToken();
+  }, [session]);
+
+  // Fetch bookings when token is set
+  useEffect(() => {
+    if (adminToken) {
+      fetchBookings();
+    }
+  }, [adminToken]);
+
+  // Redirect if not authenticated
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/admin/login');
+    }
+  }, [user, authLoading, router]);
 
   // Initialize audio context for bell sound with ringing effect
   useEffect(() => {
@@ -132,7 +158,7 @@ export function AdminDashboard({ initialToken, onLogout }: AdminDashboardProps =
 
   // Detect new bookings and show notification
   useEffect(() => {
-    if (!isLoggedIn) return; // Don't trigger if not logged in
+    if (!user) return; // Don't trigger if not logged in
     
     if (bookings.length > previousBookingCount) {
       // Get the newest booking
@@ -216,18 +242,18 @@ export function AdminDashboard({ initialToken, onLogout }: AdminDashboardProps =
       
       setPreviousBookingCount(bookings.length);
     }
-  }, [bookings.length, isLoggedIn]);
+  }, [bookings.length, user]);
 
   // Auto-refresh bookings every 3 seconds when logged in
   useEffect(() => {
-    if (!isLoggedIn || !adminToken) return;
+    if (!user || !adminToken) return;
 
     const interval = setInterval(() => {
       fetchBookings();
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [isLoggedIn, adminToken]);
+  }, [user, adminToken]);
 
   const fetchBookings = async () => {
     if (!adminToken) return;
@@ -245,39 +271,6 @@ export function AdminDashboard({ initialToken, onLogout }: AdminDashboardProps =
       }
     } catch (err) {
       console.error('Fetch error:', err);
-    }
-  };
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch('/api/admin/bookings', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${password}`,
-        },
-      });
-
-      if (!response.ok) {
-        setError('Invalid password');
-        setLoading(false);
-        return;
-      }
-
-      const data = await response.json();
-      setBookings(data);
-      setIsLoggedIn(true);
-      setAdminToken(password);
-      setPassword('');
-      setPreviousBookingCount(data.length); // Initialize previous count
-    } catch (err) {
-      console.error('Login error:', err);
-      setError('Login failed - ' + String(err));
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -325,13 +318,9 @@ export function AdminDashboard({ initialToken, onLogout }: AdminDashboardProps =
     }
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setAdminToken(null);
-    setBookings([]);
-    if (onLogout) {
-      onLogout();
-    }
+  const handleLogout = async () => {
+    await signOut();
+    router.push('/admin/login');
   };
 
   const handleManualRefresh = async () => {
@@ -340,44 +329,20 @@ export function AdminDashboard({ initialToken, onLogout }: AdminDashboardProps =
     setRefreshing(false);
   };
 
-  if (!isLoggedIn) {
+  // Show loading state while checking authentication
+  if (authLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md p-8 bg-white shadow-2xl border-0">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-amber-700 to-amber-600 bg-clip-text text-transparent mb-2">
-              AXA
-            </h1>
-            <p className="text-slate-600 text-lg font-semibold">Admin Portal</p>
-          </div>
-
-          <form onSubmit={handleLogin} className="space-y-4">
-            {error && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-700 text-sm font-medium">{error}</p>
-              </div>
-            )}
-
-            <Input
-              type="password"
-              placeholder="Enter admin password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={loading}
-              className="h-11 border-slate-300"
-            />
-
-            <Button 
-              type="submit" 
-              className="w-full h-11 bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-800 hover:to-amber-700 text-white font-semibold" 
-              disabled={loading}
-            >
-              {loading ? 'Logging in...' : 'Login'}
-            </Button>
-          </form>
-        </Card>
+        <div className="text-center">
+          <p className="text-white text-lg">Loading...</p>
+        </div>
       </div>
     );
+  }
+
+  // Component will redirect to login in useEffect if not authenticated
+  if (!user || !adminToken) {
+    return null;
   }
 
   const filteredBookings = bookings.filter((b) =>

@@ -111,7 +111,7 @@ export default function About() {
               </p>
               <p className="text-gray-300 flex items-center">
                 <span className="text-2xl mr-3">📧</span>
-                info@axabarbershop.com
+                aalizadeh910@gmail.com
               </p>
             </div>
 

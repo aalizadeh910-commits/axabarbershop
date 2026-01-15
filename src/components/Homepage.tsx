@@ -253,8 +253,8 @@ export function Homepage({ onNavigate }: HomepageProps) {
                 </div>
                 <div>
                   <p className="text-muted-foreground mb-1">{t('homepage.email')}</p>
-                  <a href="mailto:info@finnishcuts.fi" className="text-primary hover:underline">
-                    info@finnishcuts.fi
+                  <a href="mailto:aalizadeh910@gmail.com" className="text-primary hover:underline">
+                    aalizadeh910@gmail.com
                   </a>
                 </div>
               </div>

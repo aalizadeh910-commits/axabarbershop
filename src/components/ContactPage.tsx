@@ -143,10 +143,10 @@ export function ContactPage() {
                 <div className="flex-1">
                   <h3 className="text-lg mb-2">{t('contact.email')}</h3>
                   <a
-                    href="mailto:info@finnishcuts.fi"
+                    href="mailto:aalizadeh910@gmail.com"
                     className="text-primary hover:underline text-lg"
                   >
-                    info@finnishcuts.fi
+                    aalizadeh910@gmail.com
                   </a>
                 </div>
               </div>

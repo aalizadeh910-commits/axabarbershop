@@ -71,7 +71,7 @@ const emailTemplates = {
               <p>Rullakkotori 1 LT 2<br>00240 Helsinki<br>Finland</p>
               
               <p>If you need to reschedule or cancel, please contact us at:</p>
-              <p>Phone: +358 41 3134978<br>Email: info@axabarbershop.fi</p>
+              <p>Phone: +358 41 3134978<br>Email: aalizadeh910@gmail.com</p>
               
               <p>We look forward to seeing you!</p>
               <p>Best regards,<br><strong>AXA Barbershop Team</strong></p>
@@ -122,7 +122,7 @@ const emailTemplates = {
               <p>Rullakkotori 1 LT 2<br>00240 Helsinki<br>Suomi</p>
               
               <p>Jos haluat siirtää tai peruuttaa varauksen, ota yhteyttä:</p>
-              <p>Puhelin: +358 41 3134978<br>Sähköposti: info@axabarbershop.fi</p>
+              <p>Puhelin: +358 41 3134978<br>Sähköposti: aalizadeh910@gmail.com</p>
               
               <p>Nähdään pian!</p>
               <p>Ystävällisin terveisin,<br><strong>AXA Parturipalvelu -tiimi</strong></p>

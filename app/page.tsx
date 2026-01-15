@@ -18,7 +18,7 @@ const structuredData = {
     addressCountry: "FI"
   },
   telephone: "+358401234567",
-  email: "info@axabarbershop.fi",
+  email: "aalizadeh910@gmail.com",
   url: "https://axabarbershop.fi",
   priceRange: "$$",
   areaServed: "Helsinki",

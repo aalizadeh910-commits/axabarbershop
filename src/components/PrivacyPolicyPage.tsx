@@ -107,7 +107,7 @@ export function PrivacyPolicyPage() {
             <div className="space-y-2 text-muted-foreground">
               <p><strong>{t('privacy.contactName')}:</strong> AXA Barbershop</p>
               <p><strong>{t('privacy.contactAddress')}:</strong> Rullakkotori 1 LT 2, 00240 Helsinki, Finland</p>
-              <p><strong>{t('privacy.contactEmail')}:</strong> info@axabarbershop.fi</p>
+              <p><strong>{t('privacy.contactEmail')}:</strong> aalizadeh910@gmail.com</p>
               <p><strong>{t('privacy.contactPhone')}:</strong> +358 41 3134978</p>
             </div>
           </section>

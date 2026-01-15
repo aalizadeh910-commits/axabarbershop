@@ -27,7 +27,7 @@ export default function Footer() {
             <ul className="text-gray-300 space-y-2">
               <li>📍 Rullakkotori 1 LT 2, 00240 Helsinki</li>
               <li>📞 +358 41 3134978</li>
-              <li>📧 info@axabarbershop.com</li>
+              <li>📧 aalizadeh910@gmail.com</li>
             </ul>
           </div>
 

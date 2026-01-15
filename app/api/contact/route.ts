@@ -232,6 +232,10 @@ export async function POST(request: NextRequest) {
       to: data.email,
       subject: template.subject,
       html: customerEmailContent,
+      headers: {
+        'X-Entity-Ref-ID': `contact-${Date.now()}`,
+        'List-Unsubscribe': '<mailto:noreply@axabarbershop.fi?subject=unsubscribe>',
+      },
     });
 
     // Send notification email to business
@@ -240,6 +244,10 @@ export async function POST(request: NextRequest) {
       to: 'aalizadeh910@gmail.com',
       subject: `New Contact Form - ${data.name}`,
       html: template.getBusinessHtml(data),
+      headers: {
+        'X-Entity-Ref-ID': `contact-${Date.now()}-admin`,
+        'List-Unsubscribe': '<mailto:noreply@axabarbershop.fi?subject=unsubscribe>',
+      },
     });
 
     // Return success response

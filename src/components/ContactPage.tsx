@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useI18n } from "./I18nProvider";
+import { toast } from "sonner";
 
 export function ContactPage() {
   const { t, language } = useI18n();
@@ -55,6 +56,20 @@ export function ContactPage() {
 
       setSubmitted(true);
       setFormData({ name: "", email: "", message: "" });
+      
+      // Show toast notification with junk folder reminder
+      if (language === "fi") {
+        toast.success("Viesti lähetetty!", {
+          description: "Tarkista roskapostikansio, jos et kuule meistä 24 tunnin sisällä.",
+          duration: 6000,
+        });
+      } else {
+        toast.success("Message Sent!", {
+          description: "Please check your junk folder if you don't hear from us within 24 hours.",
+          duration: 6000,
+        });
+      }
+      
       setTimeout(() => {
         setSubmitted(false);
       }, 5000);
